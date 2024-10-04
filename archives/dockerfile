@@ -1,0 +1,14 @@
+# FROM: Establece una imagen base para el contenedor, donde 'python:3.9-slim' es una versión ligera de Python  
+FROM python:3.9-slim
+
+# WORKDIR: Define el directorio de trabajo dentro del contenedor
+WORKDIR /task-docker
+
+# COPY: Permite copiar archivos desde el host hacia el contenedor. Acá se envía el script de python al WORKDIR del docker
+COPY procesar_uf.py .
+
+# RUN: Instrucción que ejecuta acciones durante la creación del contenedor. En este caso, instala las dependencias necesarias
+RUN pip install matplotlib pandas pytz
+
+# CMD: Indica que comando se ejecutará cuando se inicie el contenedor
+CMD ["python", "procesar_uf.py"]
